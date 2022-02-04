@@ -106,13 +106,6 @@ De 8 små ballene går i forskjellige (tilfeldige) retninger.
 ✅Gjør ferdig eksplosjons-metoden .(`add-commit-push`)
 
 
-Bonus:
-Et viktig fysisk prinsipp som gjelder for alle eksplosjoner er bevaring av bevegelsesmengde.
-Programmet vil se mer realistisk ut hvis du implementerer dette.
-
-For eksempel, 1 ball med diameter 32 eksploderer til 8 baller med diameter 16 som eksploderer til 64 baller med  diameter 8 som eksploderer til
-512 baller med diameter 4 som eksploderer til 4096 baller med diameter 2 som eksploderer til 32768 baller med diameter 1.
-
 Det er ressurskrevende å tegne baller på skjermen så programmet kan gå tregt hvis vi tegner alle ballene.
 En god strategi kan være å bare beholde de ballene som har diameter >= 4.
 Det vil si at hvis en ball med diameter 4 eksploderer, så bare forsvinner den og explode metoden returnerer en tom tabell.
