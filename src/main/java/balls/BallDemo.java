@@ -70,41 +70,44 @@ public class BallDemo extends Application {
 			newBall();
 		}
 	}
-	
+
 	/**
 	 * Add a new ball to the canvas
 	 * All balls are affected by gravity and they bounce against the bottom.
+	 * 
 	 * @param ball
 	 */
 	public void addBall(Ball ball) {
 		ball.setAcceleration(0, 0.098f);
-		ball.setUpperLimitY(canvas.getHeight()-ball.getRadius());
+		ball.setUpperLimitY(canvas.getHeight() - ball.getRadius());
 		balls.add(ball);
 	}
-	
+
 	/**
 	 * Remove a ball from the canvas
+	 * 
 	 * @param ball
 	 */
 	public void removeBall(Ball ball) {
 		balls.remove(ball);
 	}
-	
+
 	/**
 	 * Makes a ball explode into many small balls
+	 * 
 	 * @param ball
 	 */
 	public void addExplosion(Ball ball) {
 		balls.remove(ball);
 		Ball[] newBalls = ball.explode();
-		if(balls.size()<maxNumberOfBalls) { //avoid too many balls to be on the screen
-			for(Ball b: newBalls) {
+		if (balls.size() < maxNumberOfBalls) { // avoid too many balls to be on the screen
+			for (Ball b : newBalls) {
 				if (ball.getRadius() > 4)
 					addBall(b);
 			}
 		}
 	}
-	
+
 	/**
 	 * Create a new ball of size 32 and adds it to the BallDemo
 	 * The color will be random
@@ -119,20 +122,22 @@ public class BallDemo extends Application {
 	 * Creates a new ball and adds it to the BallDemo
 	 * The speed will be random in both x and y direction
 	 * The color will be random
-	 * @param x - x position of the ball
-	 * @param y - y position of the ball
+	 * 
+	 * @param x    - x position of the ball
+	 * @param y    - y position of the ball
 	 * @param size - radius of the ball
 	 */
 	private void newBall(double x, double y, double size) {
 		Paint paint = getRandomColor();
 		Ball b = new Ball(paint, size);
 		b.moveTo(x, y);
-		b.setSpeed((128/size) * (random.nextDouble() - 0.5), -(256/size) * random.nextDouble() - 5);
+		b.setSpeed((128 / size) * (random.nextDouble() - 0.5), -(256 / size) * random.nextDouble() - 5);
 		addBall(b);
 	}
 
 	/**
 	 * Returns a random color
+	 * 
 	 * @return
 	 */
 	private Paint getRandomColor() {
@@ -149,11 +154,11 @@ public class BallDemo extends Application {
 	 */
 	protected void step() {
 		for (Ball b : new ArrayList<>(balls)) {
-			//b.accelerate(0, 0.098f); // all balls are affected by gravity
+			// b.accelerate(0, 0.098f); // all balls are affected by gravity
 			b.move();
 
 			// after a 200 steps a ball will explode
-			if(b.getSteps() >= 200)
+			if (b.getSteps() >= 200)
 				addExplosion(b);
 
 		}
@@ -164,9 +169,9 @@ public class BallDemo extends Application {
 
 		// every 100th step number of balls are printed
 		if (stepCount % 100 == 0) {
-			System.out.println("Number of balls: "+balls.size());
+			System.out.println("Number of balls: " + balls.size());
 		}
-		
+
 		stepCount++;
 	}
 
@@ -190,7 +195,6 @@ public class BallDemo extends Application {
 	}
 }
 
-
 /**
  * Class for calling the {@link #BallDemo.draw()} method 60 times per second
  */
@@ -203,6 +207,7 @@ class BallDemoTimer extends AnimationTimer {
 	public BallDemoTimer(BallDemo balldemo) {
 		this.balldemo = balldemo;
 	}
+
 	@Override
 	public void handle(long now) {
 		if (lastUpdateTime > 0) {
@@ -217,4 +222,3 @@ class BallDemoTimer extends AnimationTimer {
 		balldemo.draw();
 	}
 }
-

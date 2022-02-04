@@ -18,7 +18,7 @@ public class BallTest {
 			b.move();
 		return b;
 	}
-	
+
 	@Test
 	public void testDimensions() {
 		for (int i = 0; i < N; i++) {
@@ -100,7 +100,7 @@ public class BallTest {
 	public void moveStepProperty(Ball b) {
 		int steps = b.getSteps();
 		b.move();
-		assertEquals(steps+1, b.getSteps());
+		assertEquals(steps + 1, b.getSteps());
 	}
 
 	@Test
@@ -120,41 +120,41 @@ public class BallTest {
 	public void testGetRadius() {
 		int radius = 10;
 		assertEquals(radius, new Ball(Color.WHITE, radius).getRadius());
-		radius = 20; 
+		radius = 20;
 		assertEquals(radius, new Ball(Color.WHITE, radius).getRadius());
 	}
-	
+
 	@Test
 	public void testHaltStopsAccelerate() {
 		Ball b = new Ball(Color.WHITE, 10);
 		double startX = b.getX(), startY = b.getY();
-		double x = 15, y = 20; 
+		double x = 15, y = 20;
 		b.accelerate(x, y);
 		b.halt();
 		b.move();
 		assertEquals(startX, b.getX());
 		assertEquals(startY, b.getY());
 	}
-	
+
 	@Test
 	public void testAccelerateMove() {
 		Ball b = new Ball(Color.WHITE, 10);
-		double x = 15, y = 20; 
+		double x = 15, y = 20;
 		b.accelerate(x, y);
 		b.move();
 		assertEquals(x, b.getX());
 		assertEquals(y, b.getY());
 	}
-	
+
 	/**
 	 * Checks the size of the balls created from the explosion.
 	 */
 	@Test
 	void testExplodeSize() {
-		Ball ball = new Ball(Color.BISQUE,24);
+		Ball ball = new Ball(Color.BISQUE, 24);
 		Ball[] newBalls = ball.explode();
-		assertEquals(8,newBalls.length);
-		for(Ball b : newBalls) {
+		assertEquals(8, newBalls.length);
+		for (Ball b : newBalls) {
 			assertEquals(12, b.getRadius());
 		}
 	}
@@ -165,11 +165,11 @@ public class BallTest {
 	 */
 	@Test
 	void testExplodePosition() {
-		Ball ball = new Ball(Color.BISQUE,24);
+		Ball ball = new Ball(Color.BISQUE, 24);
 		ball.moveTo(5.0, 5.0);
 		Ball[] newBalls = ball.explode();
-		assertEquals(8,newBalls.length);
-		for(Ball b : newBalls) {
+		assertEquals(8, newBalls.length);
+		for (Ball b : newBalls) {
 			assertEquals(ball.getX(), b.getX());
 			assertEquals(ball.getY(), b.getY());
 		}
@@ -181,10 +181,10 @@ public class BallTest {
 	 */
 	@Test
 	void testExplodeSpeedNotZero() {
-		Ball ball = new Ball(Color.BISQUE,24);
+		Ball ball = new Ball(Color.BISQUE, 24);
 		Ball[] newBalls = ball.explode();
-		assertEquals(8,newBalls.length);
-		for(Ball b : newBalls) {
+		assertEquals(8, newBalls.length);
+		for (Ball b : newBalls) {
 			assertFalse(b.getDeltaX() == 0.0);
 			assertFalse(b.getDeltaY() == 0.0);
 		}
