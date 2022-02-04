@@ -19,16 +19,12 @@ public class Ball{
 
 	/** Color of the ball's surface */
 	private Paint color;
-	/** Radius of the ball. */
-	private double radius;
 	/** The ball's position and speed in x direction. */
 	private Motion xMotion;
 	/** The ball's position and speed in y direction. */
 	private Motion yMotion;
 	/** Number of steps taken */
 	private int steps = 0;
-
-	private Random random = new Random();
 
 	/**
 	 * Create a new ball with position and velocity (0,0)
@@ -41,53 +37,49 @@ public class Ball{
 	public Ball(Paint color, double radius) {
 		if (radius < 0)
 			throw new IllegalArgumentException("Radius should not be negative");
-		this.color = color;
-		this.radius = radius;
-
-		xMotion = new Motion();
-		yMotion = new Motion();
+		
 	}
 
 	/**
 	 * @return Current X position of the Ball
 	 */
 	public double getX() {
-		return xMotion.getPosition();
+		// TODO
 	}
 
 	/**
 	 * @return Current Y position of the Ball
 	 */
 	public double getY() {
-		return yMotion.getPosition();
+		// TODO
 	}
 	
 	/**
 	 * @return The ball's radius
 	 */
 	public double getRadius() {
-		return radius;
+		// TODO
 	}
 
 	/**
 	 * @return The ball's width (normally 2x {@link #getRadius()})
 	 */
 	public double getWidth() {
-		return radius * 2;
+		// TODO
 	}
 
 	/**
 	 * @return The ball's height (normally 2x {@link #getRadius()})
 	 */
 	public double getHeight() {
-		return radius * 2;
+		// TODO
 	}
 
 	/**
 	 * @return Paint/color for the ball
 	 */
 	public Paint getColor() {
-		return color;
+		// TODO
 	}
 
 	/**
@@ -111,8 +103,7 @@ public class Ball{
 	 *            New Y position
 	 */
 	public void moveTo(double newX, double newY) {
-		xMotion.setPosition(newX);
-		yMotion.setPosition(newY);
+		// TODO
 	}
 	
 	/**
@@ -138,9 +129,9 @@ public class Ball{
 	 * (deltaX,deltaY).
 	 */
 	public void move() {
-		xMotion.move();
-		yMotion.move();
-		steps++;
+		// TODO
+		// Hint: examine which methods there are in the class Motion
+		//      maybe you don't have to do as much as you think.
 	}
 	
 	/**
@@ -149,42 +140,10 @@ public class Ball{
 	 * @return the new balls after the explosion
 	 */
 	public Ball[] explode() {
-		int nChildBalls = 8;
-		Ball[] balls = new Ball[nChildBalls];
-		for (int i = 0; i < nChildBalls; i++) {
-			Ball childBall = createRandomBallChild(this);
-			balls[i] = childBall;
-		}
-		return balls;
+		// TODO
+		return null;
 	}
 
-	public Ball createRandomBallChild(Ball parent) {
-		double childRadius = getRadius() / 2.0;
-		Paint childColor = getRandomColor();
-
-		double newSpeedX = random.nextDouble() + this.getDeltaX();
-		double newSpeedY = random.nextDouble() + this.getDeltaY();
-		double newAccelerationX = random.nextDouble() + xMotion.getAcceleration();
-		double newAccelerationY = random.nextDouble() + yMotion.getAcceleration();
-		
-		Ball childBall = new Ball(childColor, childRadius);
-		childBall.setAcceleration(newAccelerationX, newAccelerationY);
-		childBall.setSpeed(newSpeedX, newSpeedY);
-		childBall.moveTo(parent.getX(), parent.getY());
-		return childBall;
-	}
-
-	/**
-	 * Returns a random color
-	 * @return color
-	 */
-	private Paint getRandomColor() {
-		Color color = Color.RED.deriveColor(64 * random.nextDouble() - 32.0, 1.0, 1.0, .7);
-		Color white = color.deriveColor(0.0, .33, 3.0, 2.0);
-		Paint paint = new RadialGradient(0.0, 0.0, 0.3, 0.3, .6, true, CycleMethod.NO_CYCLE, new Stop(0.0, white),
-				new Stop(1.0, (Color) color));
-		return paint;
-	}
 
 	/**
 	 * Acceleration changes the speed of this ball every time move is called.
@@ -195,8 +154,7 @@ public class Ball{
 	 * @param yAcceleration The extra speed along the y-axis
 	 */
 	public void setAcceleration(double xAcceleration, double yAcceleration) {
-		xMotion.setAcceleration(xAcceleration);
-		yMotion.setAcceleration(yAcceleration);
+		// TODO
 	}
 
 	/**
@@ -207,8 +165,7 @@ public class Ball{
 	 * @param yAcceleration
 	 */
 	public void accelerate(double xAcceleration, double yAcceleration) {
-		xMotion.accelerate(xAcceleration);
-		yMotion.accelerate(yAcceleration);
+		// TODO
 	}
 
 	/**
@@ -216,8 +173,7 @@ public class Ball{
 	 * Both speed and acceleration will be sat to 0
 	 */
 	public void halt() {
-		setAcceleration(0, 0);
-		setSpeed(0, 0);
+		// TODO
 	}
 
 	/**
