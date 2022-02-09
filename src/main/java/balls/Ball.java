@@ -20,9 +20,9 @@ public class Ball {
 	/** Color of the ball's surface */
 	private Paint color;
 	/** The ball's position and speed in x direction. */
-	private Motion xMotion;
+	private Motion xMotion = new Motion();
 	/** The ball's position and speed in y direction. */
-	private Motion yMotion;
+	private Motion yMotion = new Motion();
 	/** Number of steps taken */
 	private int steps = 0;
 	private double radius = 0.0;
@@ -38,6 +38,7 @@ public class Ball {
 	public Ball(Paint color, double radius) {
 		this.color = color;
 		this.radius = radius;
+
 		if (radius < 0)
 			throw new IllegalArgumentException("Radius should not be negative");
 
@@ -108,8 +109,8 @@ public class Ball {
 	 */
 	public void moveTo(double newX, double newY) {
 		// TODO
-		newX = getX();
-		newY = getY();
+		xMotion.setPosition(newX);
+		yMotion.setPosition(newY);
 	}
 
 	/**
@@ -140,6 +141,9 @@ public class Ball {
 		// TODO
 		// Hint: examine which methods there are in the class Motion
 		// maybe you don't have to do as much as you think.
+		steps++;
+		xMotion.move();
+		yMotion.move();
 	}
 
 	/**
@@ -150,7 +154,14 @@ public class Ball {
 	 */
 	public Ball[] explode() {
 		// TODO
-		return null;
+		Ball[] balls = new Ball[8];
+		for (int i = 0; i < 8; i++){
+			balls[i] = new Ball(color, radius / 2);
+			balls[i].xMotion.setPosition(getX());
+			balls[i].yMotion.setPosition(getY());
+			balls[i].setSpeed(1.0, 2.0);
+		}
+		return balls;
 	}
 
 	/**
@@ -163,6 +174,8 @@ public class Ball {
 	 */
 	public void setAcceleration(double xAcceleration, double yAcceleration) {
 		// TODO
+		xMotion.setAcceleration(xAcceleration);
+		yMotion.setAcceleration(yAcceleration);
 	}
 
 	/**
@@ -175,6 +188,8 @@ public class Ball {
 	 */
 	public void accelerate(double xAcceleration, double yAcceleration) {
 		// TODO
+		xMotion.accelerate(xAcceleration);
+		yMotion.accelerate(yAcceleration);
 	}
 
 	/**
@@ -183,6 +198,10 @@ public class Ball {
 	 */
 	public void halt() {
 		// TODO
+		xMotion.setSpeed(0);
+		xMotion.setAcceleration(0);
+		yMotion.setSpeed(0);
+		yMotion.setAcceleration(0);
 	}
 
 	/**
