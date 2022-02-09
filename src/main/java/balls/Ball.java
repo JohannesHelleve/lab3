@@ -25,6 +25,7 @@ public class Ball {
 	private Motion yMotion;
 	/** Number of steps taken */
 	private int steps = 0;
+	private double radius = 0.0;
 
 	/**
 	 * Create a new ball with position and velocity (0,0)
