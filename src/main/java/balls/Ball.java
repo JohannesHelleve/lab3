@@ -35,6 +35,8 @@ public class Ball {
 	 *               The radius of the ball
 	 */
 	public Ball(Paint color, double radius) {
+		this.color = color;
+
 		if (radius < 0)
 			throw new IllegalArgumentException("Radius should not be negative");
 
@@ -44,42 +46,43 @@ public class Ball {
 	 * @return Current X position of the Ball
 	 */
 	public double getX() {
-		// TODO
+		return 0.0;
 	}
 
 	/**
 	 * @return Current Y position of the Ball
 	 */
 	public double getY() {
-		// TODO
+		return 0.0;
+
 	}
 
 	/**
 	 * @return The ball's radius
 	 */
 	public double getRadius() {
-		// TODO
+		return 0.0;
 	}
 
 	/**
 	 * @return The ball's width (normally 2x {@link #getRadius()})
 	 */
 	public double getWidth() {
-		// TODO
+		return getRadius() * 2;
 	}
 
 	/**
 	 * @return The ball's height (normally 2x {@link #getRadius()})
 	 */
 	public double getHeight() {
-		// TODO
+		return getRadius() * 2;
 	}
 
 	/**
 	 * @return Paint/color for the ball
 	 */
 	public Paint getColor() {
-		// TODO
+		return color;
 	}
 
 	/**
