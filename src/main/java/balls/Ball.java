@@ -7,6 +7,7 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.Paint;
 import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
+import java.lang.Math;
 
 /**
  * A class to represent bouncing balls
@@ -159,7 +160,9 @@ public class Ball {
 			balls[i] = new Ball(color, radius / 2);
 			balls[i].xMotion.setPosition(getX());
 			balls[i].yMotion.setPosition(getY());
-			balls[i].setSpeed(1.0, 2.0);
+			double xRand = Math.random();
+			double yRand = Math.random();
+			balls[i].setSpeed(xRand, yRand);
 		}
 		return balls;
 	}
